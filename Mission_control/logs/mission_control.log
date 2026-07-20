@@ -1,0 +1,40 @@
+2026-07-20 02:08:20,072 INFO mission_control.storage: Save successful: D:\Mission_control\rocket.json
+2026-07-20 02:08:33,460 INFO mission_control.launch: Starting launch sequence for rocket
+2026-07-20 02:08:38,464 INFO mission_control.launch: Weather: Rain
+2026-07-20 02:08:38,464 INFO mission_control.launch: Liftoff: fuel=94 altitude=1000
+2026-07-20 02:08:39,466 INFO mission_control.launch: t=1s fuel=87 altitude=1281
+2026-07-20 02:08:40,469 INFO mission_control.launch: t=2s fuel=84 altitude=1382
+2026-07-20 02:08:41,472 INFO mission_control.launch: t=3s fuel=78 altitude=1541
+2026-07-20 02:08:42,474 INFO mission_control.launch: t=4s fuel=74 altitude=1823
+2026-07-20 02:08:43,477 INFO mission_control.launch: t=5s fuel=67 altitude=2014
+2026-07-20 02:08:44,481 INFO mission_control.launch: t=6s fuel=62 altitude=2312
+2026-07-20 02:08:45,483 INFO mission_control.launch: t=7s fuel=57 altitude=2442
+2026-07-20 02:08:46,486 INFO mission_control.launch: t=8s fuel=53 altitude=2202
+2026-07-20 02:08:47,488 INFO mission_control.launch: t=9s fuel=48 altitude=2104
+2026-07-20 02:08:48,491 INFO mission_control.launch: t=10s fuel=42 altitude=1915
+2026-07-20 02:08:49,493 INFO mission_control.launch: t=11s fuel=35 altitude=1700
+2026-07-20 02:08:50,496 INFO mission_control.launch: t=12s fuel=28 altitude=1495
+2026-07-20 02:08:51,499 INFO mission_control.launch: t=13s fuel=22 altitude=1306
+2026-07-20 02:08:52,501 INFO mission_control.launch: t=14s fuel=15 altitude=1162
+2026-07-20 02:08:52,506 INFO mission_control.storage: Save successful: D:\Mission_control\rocket.json
+2026-07-20 02:08:52,507 INFO mission_control.launch: Mission data saved after launch
+2026-07-20 02:09:09,174 INFO mission_control.storage: Save successful: D:\Mission_control\rocket.json
+2026-07-20 02:14:28,057 INFO mission_control.launch: Starting launch sequence for rocket
+2026-07-20 02:14:33,061 INFO mission_control.launch: Weather: Cloudy
+2026-07-20 02:14:33,062 INFO mission_control.launch: Liftoff: fuel=86 altitude=1000
+2026-07-20 02:14:49,100 INFO mission_control.storage: Save successful: rocket.json
+2026-07-20 02:14:49,100 INFO mission_control.launch: Mission complete: duration=16s final_fuel=9 final_altitude=1405 missions=2
+2026-07-20 02:15:05,328 INFO mission_control.launch: Starting launch sequence for rocket
+2026-07-20 02:15:10,350 INFO mission_control.launch: Weather: Storm
+2026-07-20 02:15:10,351 WARNING mission_control.launch: Launch aborted: stormy weather
+2026-07-20 02:15:15,320 INFO mission_control.launch: Starting launch sequence for rocket
+2026-07-20 02:15:20,324 INFO mission_control.launch: Weather: Cloudy
+2026-07-20 02:15:20,325 INFO mission_control.launch: Liftoff: fuel=90 altitude=1000
+2026-07-20 02:15:29,348 INFO mission_control.storage: Save successful: rocket.json
+2026-07-20 02:15:29,348 INFO mission_control.launch: Mission complete: duration=9s final_fuel=48 final_altitude=680 missions=2
+2026-07-20 02:18:33,119 INFO mission_control.launch: Starting launch sequence for rocket
+2026-07-20 02:18:38,124 INFO mission_control.launch: Weather: Cloudy
+2026-07-20 02:18:38,124 INFO mission_control.launch: Liftoff: fuel=92 altitude=1000
+2026-07-20 02:18:44,138 INFO mission_control.launch: Phase: returning to Earth at t=6s
+2026-07-20 02:18:49,156 INFO mission_control.storage: Save successful: rocket.json
+2026-07-20 02:18:49,156 INFO mission_control.launch: Mission complete: duration=11s final_fuel=36 final_altitude=1084 missions=1
