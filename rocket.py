@@ -6,7 +6,7 @@ import random
 
 class Rocket:
     def __init__(self, fuel=100, speed=0, altitude=0,
-                 missions_completed=0, engine_temp=25, timer=0, acceleration=0, mass=500.0, thrust=15000.0, gravity=9.81):
+                 missions_completed=0, engine_temp=25, timer=0, acceleration=0, mass=500, thrust=15000, gravity=9.81):
 
         self.fuel = fuel
         self.speed = speed
