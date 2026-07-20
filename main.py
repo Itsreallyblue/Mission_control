@@ -1,5 +1,5 @@
 #this is the only file that talks to everything else
-
+import git 
 # initialize logging for the application
 import logger_config  # configures file-based logging on import
 

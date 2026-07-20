@@ -14,3 +14,11 @@ def simulate_flight(rocket):
 
         if rocket.altitude >= 10000 or rocket.fuel <= 0 or rocket.fuel == 0:
             break
+
+
+def update_physics(rocket, dt=1.0):
+    rocket.acceleration = (rocket.thrust / rocket.mass) - rocket.gravity
+
+    rocket.speed += rocket.acceleration * dt
+
+    rocket.altitude += rocket.speed * dt
