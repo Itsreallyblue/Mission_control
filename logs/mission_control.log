@@ -708,3 +708,26 @@ Saved separate mission plots: mission_20260720_032145_fuel.png, mission_20260720
 2026-07-20 03:21:46,646 DEBUG mission_control.storage: Save successful: rocket.json
 2026-07-20 03:21:46,647 INFO mission_control.launch: Mission complete: duration=11s final_fuel=32 final_altitude=1140 missions=1
 Appended mission summary to missions.jsonl
+2026-07-20 09:10:26,713 DEBUG mission_control.launch: Weather: Storm
+2026-07-20 09:10:26,714 WARNING mission_control.launch: Launch aborted: stormy weather
+2026-07-20 09:10:37,312 DEBUG mission_control.launch: Weather: Storm
+2026-07-20 09:10:37,313 WARNING mission_control.launch: Launch aborted: stormy weather
+2026-07-20 09:10:45,567 DEBUG mission_control.launch: Weather: Storm
+2026-07-20 09:10:45,568 WARNING mission_control.launch: Launch aborted: stormy weather
+2026-07-20 09:10:52,329 DEBUG mission_control.launch: Weather: Clear
+2026-07-20 09:10:52,330 DEBUG mission_control.launch: Liftoff: fuel=26.98838156384012 altitude=2140
+t=1s fuel=20.98838156384012 altitude=2266 accel=11
+t=2s fuel=13.988381563840122 altitude=2552 accel=8
+t=3s fuel=10.988381563840122 altitude=2801 accel=10
+t=4s fuel=6.988381563840122 altitude=2999 accel=13
+t=5s fuel=0.9883815638401217 altitude=3147 accel=10
+t=6s fuel=0 altitude=3442 accel=13
+2026-07-20 09:10:58,355 WARNING mission_control.launch: Mission aborted: fuel depleted at t=6s
+2026-07-20 09:10:58,359 ERROR mission_control.launch: Matplotlib not available or failed to create plots; falling back to ASCII plots
+Traceback (most recent call last):
+  File "D:\Mission_control\launch.py", line 133, in attempt_launch
+    import matplotlib
+ModuleNotFoundError: No module named 'matplotlib'
+2026-07-20 09:10:58,371 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-20 09:10:58,371 INFO mission_control.launch: Mission complete: duration=6s final_fuel=0 final_altitude=3442 missions=2
+Appended mission summary to missions.jsonl

@@ -8,7 +8,7 @@ PLOT_STYLE = "seaborn"
 
 # Whether to attempt to open the plot image after saving
 # Set to False to avoid spawning external image viewers automatically.
-OPEN_PLOT = False
+OPEN_PLOT = True
 
 # Maximum width for ASCII fallback bars
 ASCII_MAX_WIDTH = 50

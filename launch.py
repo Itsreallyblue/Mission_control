@@ -140,8 +140,10 @@ def attempt_launch(rocket):
         except Exception:
             pass
 
-        # ensure output directory
-        plots_dir = settings.PLOTS_DIR
+        # ensure output directory organized by mission date
+        plots_base_dir = settings.PLOTS_DIR
+        mission_date = time.strftime("%Y-%m-%d")
+        plots_dir = plots_base_dir / mission_date
         plots_dir.mkdir(parents=True, exist_ok=True)
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         fig_path = plots_dir / f"mission_{timestamp}.png"
