@@ -757,3 +757,23 @@ ModuleNotFoundError: No module named 'matplotlib'
 2026-07-20 09:16:08,652 DEBUG mission_control.storage: Save successful: rocket.json
 2026-07-20 09:16:08,653 INFO mission_control.launch: Mission complete: duration=15s final_fuel=19.798694226443217 final_altitude=1160 missions=1
 Appended mission summary to missions.jsonl
+2026-07-21 02:17:59,050 DEBUG mission_control.launch: Weather: Clear
+2026-07-21 02:17:59,051 DEBUG mission_control.launch: Liftoff: fuel=95.40737602873641 altitude=20.468111965635963
+t=1s fuel=88.40737602873641 altitude=161.46811196563596 accel=7.0
+t=2s fuel=83.40737602873641 altitude=269.46811196563596 accel=15.0
+t=3s fuel=78.40737602873641 altitude=567.4681119656359 accel=12.0
+t=4s fuel=74.40737602873641 altitude=826.4681119656359 accel=5.0
+2026-07-21 02:18:04,066 DEBUG mission_control.launch: Phase: returning to Earth at t=5s
+t=5s fuel=70.40737602873641 altitude=660.4681119656359 accel=-4.0
+t=6s fuel=66.40737602873641 altitude=439.4681119656359 accel=-8.0
+t=7s fuel=60.40737602873641 altitude=297.4681119656359 accel=-9.0
+t=8s fuel=56.40737602873641 altitude=76.4681119656359 accel=-3.0
+t=9s fuel=50.40737602873641 altitude=0 accel=-10.0
+2026-07-21 02:18:08,089 ERROR mission_control.launch: Matplotlib not available or failed to create plots; falling back to ASCII plots
+Traceback (most recent call last):
+  File "D:\Mission_control\launch.py", line 134, in attempt_launch
+    import matplotlib
+ModuleNotFoundError: No module named 'matplotlib'
+2026-07-21 02:18:08,103 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-21 02:18:08,103 INFO mission_control.launch: Mission complete: duration=9s final_fuel=50.40737602873641 final_altitude=0 missions=1
+Appended mission summary to missions.jsonl

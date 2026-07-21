@@ -6,7 +6,7 @@ import random
 
 class Rocket:
     def __init__(self, fuel=100, speed=0, altitude=0,
-                 missions_completed=0, engine_temp=25, timer=0, acceleration=0, mass=500, thrust=15000, gravity=9.81):
+                 missions_completed=0, engine_temp=25, timer=0, acceleration=0, mass=500, thrust=15000, gravity=9.81, throttle=100):
 
         self.fuel = fuel
         self.speed = speed
@@ -18,6 +18,11 @@ class Rocket:
         self.mass = mass    # Kg
         self.thrust = thrust
         self.gravity = gravity  # m/s^2
+        self.throttle = throttle  # percentage
+        self.altitude_history = []
+        self.speed_history = []
+        self.acceleration_history = []
+        self.fuel_history = []
 
     def burn_fuel(self):
         fuel_loss = random.uniform(2.0, 6.0)

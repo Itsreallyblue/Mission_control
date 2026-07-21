@@ -1,12 +1,14 @@
 import time
 
+import rocket
+
 def simulate_flight(rocket):
 
     while rocket.fuel > 0:
 
         rocket.burn_fuel()
 
-        rocket.launch()
+        update_physics(rocket)
 
         rocket.display_status()
 
@@ -17,7 +19,9 @@ def simulate_flight(rocket):
 
 
 def update_physics(rocket, dt=1.0):
-    rocket.acceleration = (rocket.thrust / rocket.mass) - rocket.gravity
+    effective_thrust = rocket.thrust * (rocket.throttle / 100)
+
+    rocket.acceleration = (effective_thrust / rocket.mass) - rocket.gravity  
 
     rocket.speed += rocket.acceleration * dt
 

@@ -13,6 +13,7 @@ data = load_rocket_data()
 
 rocket = Rocket(**data)
 
+
 while True:
 
     print("\n" + "=" * 48)

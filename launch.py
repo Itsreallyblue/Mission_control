@@ -8,6 +8,7 @@ from pathlib import Path
 
 sys.path.append(str(Path(__file__).resolve().parent))
 
+from physics import update_physics
 from weather import get_weather
 from activetelemetry import show_telemetry_persec
 from storage import save_rocket
@@ -37,7 +38,7 @@ def attempt_launch(rocket):
 
     # initial burn and liftoff
     rocket.burn_fuel()
-    rocket.launch()
+    update_physics(rocket)
     # user-facing liftoff message without logger timestamp
     print("Launch successful! Liftoff!")
     # detailed liftoff info at DEBUG level
