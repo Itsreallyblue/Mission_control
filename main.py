@@ -3,6 +3,7 @@
 import logger_config  # configures file-based logging on import
 
 from rocket import Rocket
+from rocket_types import build_rocket, select_rocket_type
 from storage import load_rocket_data, reset_save, save_rocket
 from telemetry import show_telemetry
 from launch import attempt_launch
@@ -12,6 +13,17 @@ from refuelstation import refuel_station
 data = load_rocket_data()
 
 rocket = Rocket(**data)
+rocket.name = "Current Rocket"
+
+
+def choose_rocket_for_action(current_rocket):
+    selected_rocket_type = select_rocket_type(input, print)
+    if current_rocket and getattr(current_rocket, "name", None) == selected_rocket_type["name"]:
+        return current_rocket
+
+    selected_rocket = build_rocket(selected_rocket_type, current_rocket=current_rocket)
+    selected_rocket.name = selected_rocket_type["name"]
+    return selected_rocket
 
 
 while True:
@@ -19,13 +31,18 @@ while True:
     print("\n" + "=" * 48)
     print("        MISSION CONTROL")
     print("=" * 48)
+    selected_name = getattr(rocket, "name", "Current Rocket")
+    print(f"Selected Rocket: {selected_name}")
     print(" 1) Rocket Status        2) Launch Rocket")
     print(" 3) Telemetry            4) Weather Report")
     print(" 5) Save                 6) Reset Save")
     print(" 7) Refuel Station       8) Logging Settings")
     print(" 9) Exit                 L) Open Logging Menu")
 
-    choice = input("\nChoose an option: ")
+    choice = input("\nChoose an option: ").strip()
+
+    if choice in {"1", "2", "3", "5", "6", "7"}:
+        rocket = choose_rocket_for_action(rocket)
 
     if choice == "1":
         rocket.display_status()

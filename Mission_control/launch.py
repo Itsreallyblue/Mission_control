@@ -18,8 +18,19 @@ logger = logging.getLogger("mission_control.launch")
 
 
 def attempt_launch(rocket):
+    rocket_name = getattr(rocket, "name", "rocket")
     # user-facing start message (no logger timestamp)
-    print("Starting launch sequence for rocket ......")
+    print(f"Starting launch sequence for {rocket_name}...")
+
+    launch_choice = input("Press 1 to continue launch or 2 to abort: ").strip()
+    if launch_choice == "2":
+        print("Launch aborted by user.")
+        logger.info("Launch aborted by user")
+        return False
+    if launch_choice != "1":
+        print("Invalid choice. Launch aborted.")
+        logger.info("Launch aborted due to invalid confirmation")
+        return False
 
     for i in range(5, 0, -1):
         print(f"Launching in T-{i}...")

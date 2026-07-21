@@ -777,3 +777,5 @@ ModuleNotFoundError: No module named 'matplotlib'
 2026-07-21 02:18:08,103 DEBUG mission_control.storage: Save successful: rocket.json
 2026-07-21 02:18:08,103 INFO mission_control.launch: Mission complete: duration=9s final_fuel=50.40737602873641 final_altitude=0 missions=1
 Appended mission summary to missions.jsonl
+2026-07-21 10:29:57,782 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-21 10:32:13,025 INFO mission_control.launch: Launch aborted by user

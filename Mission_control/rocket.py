@@ -31,6 +31,8 @@ class Rocket:
         print("\n" + "~" * 50)
         print("            ROCKET STATUS")
         print("~" * 50)
+        rocket_name = getattr(self, "name", "Unnamed Rocket")
+        print(f"  Rocket:         {rocket_name}")
         print(f"  Fuel:           {self.fuel:>3}%")
         print(f"  Speed:          {self.speed} m/s")
         print(f"  Altitude:       {self.altitude} m")

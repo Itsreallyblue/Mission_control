@@ -4,7 +4,8 @@ def show_telemetry(rocket):
 
     print("\nMISSION TELEMETRY")
     print("-" * 30)
-
+    rocket_name = getattr(rocket, "name", "Unnamed Rocket")
+    print(f"Rocket...........{rocket_name}")
     print(f"Fuel.............{rocket.fuel}%")
     print(f"Altitude.........{rocket.altitude} m")
     print(f"Speed............{rocket.speed} m/s")
