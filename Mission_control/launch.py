@@ -13,6 +13,7 @@ from activetelemetry import show_telemetry_persec
 from storage import save_rocket
 import settings
 import logger_config
+from flight_computer import evaluate_and_report
 
 logger = logging.getLogger("mission_control.launch")
 
@@ -90,6 +91,12 @@ def attempt_launch(rocket):
             rocket.altitude = max(0, rocket.altitude - descent)
             # decrease speed slightly while descending
             rocket.speed = max(0, rocket.speed - random.randint(3, 10))
+
+        assessment = evaluate_and_report(rocket)
+        if assessment["should_shutdown_engines"]:
+            logger.warning("Flight computer triggered shutdown for %s", getattr(rocket, "name", "rocket"))
+            print("Mission aborted by flight computer.")
+            break
 
         # compute acceleration (m/s^2) as change in speed per second
         accel = rocket.speed - prev_speed

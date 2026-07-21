@@ -779,3 +779,99 @@ ModuleNotFoundError: No module named 'matplotlib'
 Appended mission summary to missions.jsonl
 2026-07-21 10:29:57,782 DEBUG mission_control.storage: Save successful: rocket.json
 2026-07-21 10:32:13,025 INFO mission_control.launch: Launch aborted by user
+2026-07-21 10:47:12,266 DEBUG mission_control.launch: Weather: Clear
+2026-07-21 10:47:12,268 DEBUG mission_control.launch: Liftoff: fuel=94.62263059517785 altitude=20.516149820420765
+t=1s fuel=91.62263059517785 altitude=229.51614982042076 accel=12.0
+t=2s fuel=84.62263059517785 altitude=497.51614982042076 accel=8.0
+t=3s fuel=80.62263059517785 altitude=702.5161498204208 accel=15.0
+t=4s fuel=73.62263059517785 altitude=885.5161498204208 accel=10.0
+t=5s fuel=68.62263059517785 altitude=1163.5161498204207 accel=13.0
+t=6s fuel=63.62263059517785 altitude=1441.5161498204207 accel=10.0
+t=7s fuel=58.62263059517785 altitude=1603.5161498204207 accel=11.0
+t=8s fuel=55.62263059517785 altitude=1801.5161498204207 accel=6.0
+2026-07-21 10:47:21,302 DEBUG mission_control.launch: Phase: returning to Earth at t=9s
+t=9s fuel=51.62263059517785 altitude=1696.5161498204207 accel=-5.0
+t=10s fuel=48.62263059517785 altitude=1600.5161498204207 accel=-10.0
+t=11s fuel=45.62263059517785 altitude=1484.5161498204207 accel=-8.0
+t=12s fuel=42.62263059517785 altitude=1290.5161498204207 accel=-10.0
+t=13s fuel=35.62263059517785 altitude=1176.5161498204207 accel=-7.0
+t=14s fuel=31.622630595177853 altitude=1000.5161498204207 accel=-8.0
+t=15s fuel=25.622630595177853 altitude=819.5161498204207 accel=-7.0
+2026-07-21 10:47:28,333 WARNING mission_control.launch: Flight computer triggered shutdown for Falcon 9
+2026-07-21 10:47:28,337 ERROR mission_control.launch: Matplotlib not available or failed to create plots; falling back to ASCII plots
+Traceback (most recent call last):
+  File "D:\Mission_control\launch.py", line 152, in attempt_launch
+    import matplotlib
+ModuleNotFoundError: No module named 'matplotlib'
+2026-07-21 10:47:28,356 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-21 10:47:28,356 INFO mission_control.launch: Mission complete: duration=16s final_fuel=19.622630595177853 final_altitude=648.5161498204207 missions=1
+Appended mission summary to missions.jsonl
+2026-07-21 10:50:18,914 DEBUG mission_control.launch: Weather: Storm
+2026-07-21 10:50:18,916 WARNING mission_control.launch: Launch aborted: stormy weather
+2026-07-21 10:50:30,140 DEBUG mission_control.launch: Weather: Clear
+2026-07-21 10:50:30,140 DEBUG mission_control.launch: Liftoff: fuel=96.4591049521398 altitude=20.403968986319725
+t=1s fuel=89.4591049521398 altitude=277.40396898631974 accel=9.0
+t=2s fuel=86.4591049521398 altitude=467.40396898631974 accel=15.0
+t=3s fuel=82.4591049521398 altitude=672.4039689863198 accel=9.0
+t=4s fuel=75.4591049521398 altitude=861.4039689863198 accel=8.0
+t=5s fuel=72.4591049521398 altitude=1097.4039689863198 accel=5.0
+t=6s fuel=65.4591049521398 altitude=1219.4039689863198 accel=8.0
+2026-07-21 10:50:37,175 DEBUG mission_control.launch: Phase: returning to Earth at t=7s
+t=7s fuel=60.459104952139796 altitude=1010.4039689863198 accel=-3.0
+t=8s fuel=55.459104952139796 altitude=890.4039689863198 accel=-6.0
+t=9s fuel=51.459104952139796 altitude=722.4039689863198 accel=-7.0
+t=10s fuel=47.459104952139796 altitude=571.4039689863198 accel=-5.0
+t=11s fuel=42.459104952139796 altitude=351.4039689863198 accel=-4.0
+t=12s fuel=36.459104952139796 altitude=108.4039689863198 accel=-5.0
+t=13s fuel=33.459104952139796 altitude=0 accel=-10.0
+2026-07-21 10:50:43,204 ERROR mission_control.launch: Matplotlib not available or failed to create plots; falling back to ASCII plots
+Traceback (most recent call last):
+  File "D:\Mission_control\launch.py", line 152, in attempt_launch
+    import matplotlib
+ModuleNotFoundError: No module named 'matplotlib'
+2026-07-21 10:50:43,211 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-21 10:50:43,212 INFO mission_control.launch: Mission complete: duration=13s final_fuel=33.459104952139796 final_altitude=0 missions=1
+Appended mission summary to missions.jsonl
+2026-07-21 10:53:36,046 DEBUG mission_control.launch: Weather: Clear
+2026-07-21 10:53:36,046 DEBUG mission_control.launch: Liftoff: fuel=94.77353503859511 altitude=20.506900435731502
+t=1s fuel=91.77353503859511 altitude=264.5069004357315 accel=11.0
+t=2s fuel=84.77353503859511 altitude=476.5069004357315 accel=10.0
+t=3s fuel=77.77353503859511 altitude=667.5069004357315 accel=6.0
+t=4s fuel=70.77353503859511 altitude=952.5069004357315 accel=7.0
+t=5s fuel=63.773535038595114 altitude=1105.5069004357315 accel=10.999999999999993
+t=6s fuel=57.773535038595114 altitude=1362.5069004357315 accel=9.0
+t=7s fuel=52.773535038595114 altitude=1580.5069004357315 accel=10.0
+t=8s fuel=45.773535038595114 altitude=1717.5069004357315 accel=14.0
+2026-07-21 10:53:36,052 DEBUG mission_control.launch: Phase: returning to Earth at t=9s
+t=9s fuel=41.773535038595114 altitude=1580.5069004357315 accel=-7.0
+t=10s fuel=38.773535038595114 altitude=1428.5069004357315 accel=-5.0
+t=11s fuel=33.773535038595114 altitude=1333.5069004357315 accel=-9.0
+t=12s fuel=29.773535038595114 altitude=1090.5069004357315 accel=-5.0
+t=13s fuel=24.773535038595114 altitude=955.5069004357315 accel=-3.0
+2026-07-21 10:53:36,056 WARNING mission_control.launch: Flight computer triggered shutdown for Falcon 9
+2026-07-21 10:53:36,058 INFO mission_control.launch: Matplotlib unavailable; falling back to ASCII plots: No module named 'matplotlib'
+2026-07-21 10:53:36,060 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-21 10:53:36,060 INFO mission_control.launch: Mission complete: duration=14s final_fuel=17.773535038595114 final_altitude=741.5069004357315 missions=1
+Appended mission summary to missions.jsonl
+2026-07-21 11:03:03,613 DEBUG mission_control.launch: Weather: Clear
+2026-07-21 11:03:03,614 DEBUG mission_control.launch: Liftoff: fuel=96.69972206996529 altitude=20.389332380313057
+t=1s fuel=90.69972206996529 altitude=184.38933238031305 accel=9.0
+t=2s fuel=87.69972206996529 altitude=357.389332380313 accel=12.0
+t=3s fuel=80.69972206996529 altitude=520.389332380313 accel=15.0
+t=4s fuel=77.69972206996529 altitude=651.389332380313 accel=12.999999999999993
+t=5s fuel=71.69972206996529 altitude=791.389332380313 accel=9.0
+t=6s fuel=65.69972206996529 altitude=1090.3893323803131 accel=10.0
+t=7s fuel=60.69972206996529 altitude=1381.3893323803131 accel=13.0
+2026-07-21 11:03:11,654 DEBUG mission_control.launch: Phase: returning to Earth at t=8s
+t=8s fuel=54.69972206996529 altitude=1131.3893323803131 accel=-4.0
+t=9s fuel=50.69972206996529 altitude=896.3893323803131 accel=-8.0
+t=10s fuel=47.69972206996529 altitude=678.3893323803131 accel=-6.0
+t=11s fuel=42.69972206996529 altitude=516.3893323803131 accel=-7.0
+t=12s fuel=39.69972206996529 altitude=410.38933238031314 accel=-4.0
+t=13s fuel=35.69972206996529 altitude=287.38933238031314 accel=-9.0
+t=14s fuel=28.69972206996529 altitude=136.38933238031314 accel=-8.0
+t=15s fuel=23.69972206996529 altitude=0 accel=-6.0
+2026-07-21 11:03:18,698 INFO mission_control.launch: Matplotlib unavailable; falling back to ASCII plots: No module named 'matplotlib'
+2026-07-21 11:03:18,710 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-21 11:03:18,711 INFO mission_control.launch: Mission complete: duration=15s final_fuel=23.69972206996529 final_altitude=0 missions=1
+Appended mission summary to missions.jsonl

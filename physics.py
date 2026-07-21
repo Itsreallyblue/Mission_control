@@ -21,8 +21,14 @@ def simulate_flight(rocket):
 def update_physics(rocket, dt=1.0):
     effective_thrust = rocket.thrust * (rocket.throttle / 100)
 
-    rocket.acceleration = (effective_thrust / rocket.mass) - rocket.gravity  
+    # Atmospheric drag increases with speed, making it harder to escape orbit.
+    drag_coefficient = 0.08
+    drag_force = drag_coefficient * max(rocket.speed, 0)
+    net_force = effective_thrust - rocket.mass * rocket.gravity - drag_force
 
+    rocket.acceleration = net_force / rocket.mass
     rocket.speed += rocket.acceleration * dt
 
+    # Prevent backward movement from overpowering the climb.
+    rocket.speed = max(0, rocket.speed)
     rocket.altitude += rocket.speed * dt

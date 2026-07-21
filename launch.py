@@ -14,6 +14,8 @@ from activetelemetry import show_telemetry_persec
 from storage import save_rocket
 import settings
 import logger_config
+from flight_computer import evaluate_and_report
+import constants
 
 logger = logging.getLogger("mission_control.launch")
 
@@ -33,7 +35,7 @@ def attempt_launch(rocket):
         logger.info("Launch aborted due to invalid confirmation")
         return False
 
-    for i in range(5, 0, -1):
+    for i in range(constants.LAUNCH_COUNTDOWN_SECONDS, 0, -1):
         print(f"Launching in T-{i}...")
         time.sleep(1)
 
@@ -56,9 +58,14 @@ def attempt_launch(rocket):
     logger.debug("Liftoff: fuel=%s altitude=%s", rocket.fuel, rocket.altitude)
 
     # mission simulation loop: mission time increases, fuel decreases, altitude changes
-    mission_duration = random.randint(8, 16)  # seconds for simulation
+    mission_id = f"mission-{time.strftime('%Y%m%d-%H%M%S')}-{random.randint(1000, 9999)}"
+    mission_duration = random.randint(constants.LAUNCH_MIN_DURATION, constants.LAUNCH_MAX_DURATION)  # seconds for simulation
     rocket.timer = 0
     ascending = True
+    max_altitude = 0
+    top_speed = 0
+    mission_success = False
+    escape_orbit = False
     # prepare time-series for plotting
     times = []
     fuels = []
@@ -92,6 +99,30 @@ def attempt_launch(rocket):
             # decrease speed slightly while descending
             rocket.speed = max(0, rocket.speed - random.randint(3, 10))
 
+        rocket.engine_temp += rocket.throttle * constants.ENGINE_HEAT_RATE_PER_THROTTLE
+
+        assessment = evaluate_and_report(rocket)
+        if assessment["should_shutdown_engines"]:
+            logger.warning("Flight computer triggered shutdown for %s", getattr(rocket, "name", "rocket"))
+            print("Mission aborted by flight computer.")
+            break
+
+        if rocket.engine_temp > constants.ENGINE_OVERHEAT_THRESHOLD_C:
+            print("ENGINE OVERHEAT! Mission aborted.")
+            logger.warning("Engine overheat for %s at %s°C", getattr(rocket, "name", "rocket"), rocket.engine_temp)
+            break
+
+        max_altitude = max(max_altitude, rocket.altitude)
+        top_speed = max(top_speed, rocket.speed)
+
+        if rocket.altitude >= constants.ESCAPE_ALTITUDE_M:
+            escape_velocity = constants.ESCAPE_VELOCITY_BASE_M_PER_S * (1.0 + (rocket.altitude / 100000.0)) ** 0.5
+            if rocket.speed >= escape_velocity:
+                escape_orbit = True
+                print("ESCAPE ORBIT ACHIEVED! The rocket has escaped orbit.")
+                logger.info("Escape orbit achieved for %s", getattr(rocket, "name", "rocket"))
+                break
+
         # compute acceleration (m/s^2) as change in speed per second
         accel = rocket.speed - prev_speed
         rocket.acceleration = accel
@@ -124,6 +155,22 @@ def attempt_launch(rocket):
 
     # mission complete, increment missions if not already
     rocket.missions_completed += 1
+    mission_success = escape_orbit and rocket.fuel > 0
+
+    print("\n=== MISSION REPORT ===")
+    print(f"Mission ID: {mission_id}")
+    print(f"Rocket: {getattr(rocket, 'name', 'Unnamed Rocket')}")
+    print(f"Mission Time: {rocket.timer}s")
+    print(f"Max Altitude: {max_altitude:.2f} m")
+    print(f"Top Speed: {top_speed:.2f} m/s")
+    print(f"Remaining Fuel: {rocket.fuel:.2f}%")
+    print(f"Mission Success: {'Yes' if mission_success else 'No'}")
+    print("======================")
+
+    if mission_success:
+        logger.info("Mission report: id=%s rocket=%s success=yes", mission_id, getattr(rocket, "name", "Unnamed Rocket"))
+    else:
+        logger.info("Mission report: id=%s rocket=%s success=no", mission_id, getattr(rocket, "name", "Unnamed Rocket"))
 
     # generate plots for fuel vs time, altitude vs time, and acceleration vs time
     def ascii_plot(title, times, values, max_width=settings.ASCII_MAX_WIDTH):
@@ -142,9 +189,9 @@ def attempt_launch(rocket):
     plot_names = {}
 
     try:
-        import matplotlib
+        import matplotlib  # type: ignore[import-not-found]
         matplotlib.use('Agg')
-        import matplotlib.pyplot as plt
+        import matplotlib.pyplot as plt  # type: ignore[import-not-found]
 
         # apply style if available
         try:
@@ -244,8 +291,8 @@ def attempt_launch(rocket):
                     webbrowser.open(str(fig_path))
             except Exception:
                 pass
-    except Exception:
-        logger.exception("Matplotlib not available or failed to create plots; falling back to ASCII plots")
+    except Exception as exc:
+        logger.info("Matplotlib unavailable; falling back to ASCII plots: %s", exc)
         # ASCII fallback
         ascii_plot('Fuel vs Time', times, fuels)
         ascii_plot('Altitude vs Time', times, alts)
@@ -271,11 +318,17 @@ def attempt_launch(rocket):
             missions_file = settings.MISSIONS_FILE
             missions_file.parent.mkdir(parents=True, exist_ok=True)
             summary = {
+                "mission_id": mission_id,
                 "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
+                "rocket_name": getattr(rocket, "name", "Unnamed Rocket"),
                 "duration_s": rocket.timer,
+                "max_altitude": max_altitude,
+                "top_speed": top_speed,
                 "final_fuel": rocket.fuel,
                 "final_altitude": rocket.altitude,
                 "missions_completed": rocket.missions_completed,
+                "mission_success": mission_success,
+                "escaped_orbit": escape_orbit,
                 "times": times,
                 "fuels": fuels,
                 "altitudes": alts,

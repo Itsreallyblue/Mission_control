@@ -1,6 +1,6 @@
 def show_telemetry_persec(rocket):
 
-    print("\nMISSION TELEMETRY")
+    print("\n[MISSION TELEMETRY]")
     print("-" * 30)
     # show fuel, altitude, speed, engine temp, engine status, and mission timer
     print(f"Fuel.............{rocket.fuel}%")
