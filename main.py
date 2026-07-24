@@ -1,7 +1,6 @@
 #this is the only file that talks to everything else
 # initialize logging for the application
 import logger_config  # configures file-based logging on import
-
 from rocket import Rocket
 from rocket_types import build_rocket, select_rocket_type
 from storage import load_rocket_data, reset_save, save_rocket

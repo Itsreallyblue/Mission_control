@@ -1,4 +1,5 @@
 import random
+import requests
 
 weather_conditions = [
     "Clear",
