@@ -1,8 +1,8 @@
 {
-    "fuel": 23.69972206996529,
-    "speed": 49.38933238031305,
+    "fuel": 100,
+    "speed": 0,
     "altitude": 0,
-    "missions_completed": 1,
-    "engine_temp": 70.0,
-    "timer": 15
+    "missions_completed": 0,
+    "engine_temp": 25,
+    "timer": 0
 }

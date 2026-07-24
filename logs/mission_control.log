@@ -875,3 +875,27 @@ t=15s fuel=23.69972206996529 altitude=0 accel=-6.0
 2026-07-21 11:03:18,710 DEBUG mission_control.storage: Save successful: rocket.json
 2026-07-21 11:03:18,711 INFO mission_control.launch: Mission complete: duration=15s final_fuel=23.69972206996529 final_altitude=0 missions=1
 Appended mission summary to missions.jsonl
+2026-07-24 13:22:01,698 DEBUG mission_control.launch: Weather: Rain
+2026-07-24 13:22:01,728 DEBUG mission_control.launch: Liftoff: fuel=95.98346287483616 altitude=20.432943813199923
+t=1s fuel=91.98346287483616 altitude=128.43294381319993 accel=8.0
+t=2s fuel=87.98346287483616 altitude=379.4329438131999 accel=14.000000000000004
+t=3s fuel=80.98346287483616 altitude=514.4329438131999 accel=5.0
+t=4s fuel=77.98346287483616 altitude=694.4329438131999 accel=11.0
+t=5s fuel=74.98346287483616 altitude=945.4329438131999 accel=11.0
+t=6s fuel=68.98346287483616 altitude=1073.4329438132 accel=15.0
+t=7s fuel=62.983462874836164 altitude=1243.4329438132 accel=13.0
+2026-07-24 13:22:09,763 DEBUG mission_control.launch: Phase: returning to Earth at t=8s
+t=8s fuel=57.983462874836164 altitude=1093.4329438132 accel=-8.0
+t=9s fuel=54.983462874836164 altitude=885.4329438131999 accel=-5.0
+t=10s fuel=48.983462874836164 altitude=673.4329438131999 accel=-10.0
+t=11s fuel=43.983462874836164 altitude=455.4329438131999 accel=-7.0
+t=12s fuel=36.983462874836164 altitude=315.4329438131999 accel=-3.0
+t=13s fuel=31.983462874836164 altitude=180.43294381319993 accel=-10.0
+t=14s fuel=26.983462874836164 altitude=0 accel=-7.0
+t=15s fuel=20.983462874836164 altitude=0 accel=-3.0
+2026-07-24 13:22:16,803 INFO mission_control.launch: Mission report: id=mission-20260724-132201-5778 rocket=Falcon 9 success=no
+Saved mission plots: mission_20260724_132219.png
+Saved separate mission plots: mission_20260724_132219_fuel.png, mission_20260724_132219_altitude.png, mission_20260724_132219_accel.png
+2026-07-24 13:22:20,909 DEBUG mission_control.storage: Save successful: rocket.json
+2026-07-24 13:22:20,909 INFO mission_control.launch: Mission complete: duration=15s final_fuel=20.983462874836164 final_altitude=0 missions=1
+Appended mission summary to missions.jsonl
