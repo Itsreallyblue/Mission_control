@@ -22,7 +22,7 @@ def update_physics(rocket, dt=1.0):
     effective_thrust = rocket.thrust * (rocket.throttle / 100)
 
     # Atmospheric drag increases with speed, making it harder to escape orbit.
-    drag_coefficient = 0.08
+    drag_coefficient = 0.002
     drag_force = drag_coefficient * max(rocket.speed, 0)
     net_force = effective_thrust - rocket.mass * rocket.gravity - drag_force
 
