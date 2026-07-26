@@ -6,9 +6,8 @@ from rocket_types import build_rocket, select_rocket_type
 from storage import load_rocket_data, reset_save, save_rocket
 from telemetry import show_telemetry
 from launch import attempt_launch
-from weather import get_weather
+from weather_test import forecast
 from refuelstation import refuel_station
-from locations import select_launchpad_location
 
 data = load_rocket_data()
 
@@ -58,7 +57,7 @@ while True:
         show_telemetry(rocket)
 
     elif choice == "4":
-        print(f"Weather: {get_weather()}")
+        print(f"Weather: {forecast}")
 
     elif choice == "5":
         saved = save_rocket(rocket)

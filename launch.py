@@ -9,9 +9,10 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent))
 
 from physics import update_physics
-from weather import get_weather
+from weather_test import forecast
 from activetelemetry import show_telemetry_persec
 from storage import save_rocket
+from weather_test import weathercode
 import settings
 import logger_config
 from flight_computer import evaluate_and_report
@@ -39,14 +40,13 @@ def attempt_launch(rocket):
         print(f"Launching in T-{i}...")
         time.sleep(1)
 
-    weather = get_weather()
-    print(f"\nWeather: {weather}")
+    print(f"\nWeather: {forecast}")
     # keep weather in debug logs only to avoid INFO-level noise
-    logger.debug("Weather: %s", weather)
+    logger.debug("Weather: %s", forecast)
 
-    if weather == "Storm":
-        print("Launch aborted due to storm.")
-        logger.warning("Launch aborted: stormy weather")
+    if weathercode == "75" or "73" or "77" or "82" or "86" or "95" or "96" or "99" or "95 *" or "99 *":
+        print("Launch aborted due to dangerous weather.")
+        logger.warning("Launch aborted: insufficient weather")
         return False
 
     # initial burn and liftoff
