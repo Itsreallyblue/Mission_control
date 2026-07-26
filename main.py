@@ -8,6 +8,7 @@ from telemetry import show_telemetry
 from launch import attempt_launch
 from weather import get_weather
 from refuelstation import refuel_station
+from locations import select_launchpad_location
 
 data = load_rocket_data()
 
@@ -23,6 +24,10 @@ def choose_rocket_for_action(current_rocket):
     selected_rocket = build_rocket(selected_rocket_type, current_rocket=current_rocket)
     selected_rocket.name = selected_rocket_type["name"]
     return selected_rocket
+
+   
+
+    
 
 
 while True:

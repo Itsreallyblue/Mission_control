@@ -3,7 +3,25 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 from zambretti_py import PressureData, Zambretti
-from locations import launchpad_locations
+from locations import locations
+
+
+# 1. Use input() directly without print()
+user_input = input("Choose a location (e.g., saxavord): ")
+
+# 2. Convert to lowercase to prevent matching errors
+choice = user_input.strip().lower()
+
+# 3. Define fallback defaults so the script never crashes
+latitude = 51.5074   # London default
+longitude = -0.1278
+
+if choice == "saxavord":
+    print("Valid choice matched!")
+    latitude = locations[0]["latitude"]
+    longitude = locations[0]["longitude"]
+else:
+    print(f"Unknown location '{user_input}'. Defaulting to London coordinates.")
 
 
 
@@ -12,8 +30,8 @@ from locations import launchpad_locations
 # ----- Define Location and Date Range -----
 
 # Define coordinates (example: London)
-latitude = 51.50742
-longitude = -0.1278
+
+
 
 # Define the date range: last 7 days
 end_date = datetime.today()
