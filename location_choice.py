@@ -44,6 +44,8 @@ def location_choice():
    else:
       print(f"Unknown location '{user_input}'. Defaulting to SaxaVord coordinates.")
 
+   return latitude, longitude
+
 
    
 

@@ -13,8 +13,7 @@ def location_choice_recall():
     # Fallback defaults so the script never crashes
     global latitude, longitude
 
-    latitude = 60.82   # SaxaVord default
-    longitude = -0.76
+    
 
     location_choice()
 
