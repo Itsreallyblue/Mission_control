@@ -8,6 +8,7 @@ from telemetry import show_telemetry
 from launch import attempt_launch
 from weather_test import location_choice_recall
 from refuelstation import refuel_station
+from iss_tracker import get_iss_location_stage_1, get_iss_location_stage_2
 
 data = load_rocket_data()
 
@@ -41,6 +42,7 @@ while True:
     print(" 5) Save                 6) Reset Save")
     print(" 7) Refuel Station       8) Logging Settings")
     print(" 9) Exit                 L) Open Logging Menu")
+    print(" T) Track ISS location")
 
     choice = input("\nChoose an option: ").strip()
 
@@ -97,7 +99,7 @@ while True:
             elif sub == "3":
                 break
             else:
-                print("Invalid option")
+                print("Invalid option") 
 
     elif choice.lower() == "l":
         # same logging menu as option 8
@@ -141,6 +143,11 @@ while True:
     elif choice == "9":
         print("Goodbye Commander.")
         break
+
+    elif choice.lower() == "t":
+        get_iss_location_stage_1()
+        get_iss_location_stage_2()
+        
 
     else:
         print("Invalid option.")
