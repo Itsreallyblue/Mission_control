@@ -10,12 +10,7 @@ def location_choice_recall():
 
     location_menu()
 
-    # Fallback defaults so the script never crashes
-    global latitude, longitude
-
-    
-
-    location_choice()
+    latitude, longitude = location_choice()
 
 
     # ----- Define the date range -----

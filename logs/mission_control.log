@@ -16,3 +16,10 @@ Saved mission plots: mission_20260727_080333.png
 Saved separate mission plots: mission_20260727_080333_fuel.png, mission_20260727_080333_altitude.png, mission_20260727_080333_accel.png
 2026-07-27 08:03:35,091 INFO mission_control.launch: Mission complete: duration=12s final_fuel=28.161560918966742 final_altitude=540.3612786730205 missions=1
 Appended mission summary to missions.jsonl
+t=1s fuel=20.03263865027307 altitude=722.2233674790732 accel=7.0
+2026-07-27 08:13:00,788 WARNING mission_control.launch: Flight computer triggered shutdown for Starship
+2026-07-27 08:13:00,790 INFO mission_control.launch: Mission report: id=mission-20260727-081258-5961 rocket=Starship success=no
+Saved mission plots: mission_20260727_081300.png
+Saved separate mission plots: mission_20260727_081300_fuel.png, mission_20260727_081300_altitude.png, mission_20260727_081300_accel.png
+2026-07-27 08:13:02,178 INFO mission_control.launch: Mission complete: duration=2s final_fuel=17.03263865027307 final_altitude=961.2233674790732 missions=2
+Appended mission summary to missions.jsonl
