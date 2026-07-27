@@ -6,118 +6,177 @@ from zambretti_py import PressureData, Zambretti
 from locations import locations
 from location_choice import location_choice, location_menu
 
-location_menu()
+def location_choice_recall():
+
+    location_menu()
+
+    # Fallback defaults so the script never crashes
+    global latitude, longitude
+
+    latitude = 60.82   # SaxaVord default
+    longitude = -0.76
+
+    location_choice()
 
 
+    # ----- Define the date range -----
 
-# 3. Define fallback defaults so the script never crashes
-latitude = 60.82   # SaxaVord default
-longitude = -0.76
+    # Last 1 day
+    end_date = datetime.today()
+    start_date = end_date - timedelta(days=1)
 
-location_choice()
-
-
-
-
-# Define the date range: last 1 days
-end_date = datetime.today()
-start_date = end_date - timedelta(days=1)
-# Format dates as required by the API (YYYY-MM-DD)
-start_str = start_date.strftime("%Y-%m-%d")
-end_str = end_date.strftime("%Y-%m-%d")
+    # Format dates as required by the API (YYYY-MM-DD)
+    start_str = start_date.strftime("%Y-%m-%d")
+    end_str = end_date.strftime("%Y-%m-%d")
 
 
-# ----- Get Weather Data from Open Meteo API -----
+    # ----- Get Weather Data from Open Meteo API -----
 
-# Build the URL and parameters for the Open Meteo API
-url = "https://api.open-meteo.com/v1/forecast"
-params = {
-    "latitude": latitude,
-    "longitude": longitude,
-    "start_date": start_str,
-    "end_date": end_str,
-    "hourly": "temperature_2m,relativehumidity_2m,surface_pressure,weather_code",
-    "timezone": "UTC"
-}
+    url = "https://api.open-meteo.com/v1/forecast"
 
-# Request the data
-response = requests.get(url, params=params)
-data = response.json()
+    params = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "start_date": start_str,
+        "end_date": end_str,
+        "hourly": "temperature_2m,relativehumidity_2m,surface_pressure,weather_code",
+        "timezone": "UTC"
+    }
 
-# Convert the 'hourly' data to a Pandas DataFrame
-df = pd.DataFrame(data["hourly"])
+    # Request the data
+    response = requests.get(url, params=params)
+    data = response.json()
 
-# Convert the time column from string to datetime
-df['time'] = pd.to_datetime(df['time'])
+    # Convert the 'hourly' data to a Pandas DataFrame
+    df = pd.DataFrame(data["hourly"])
 
-# Preview the data
-print(df.head())
+    # Convert the time column from string to datetime
+    df['time'] = pd.to_datetime(df['time'])
 
-
-# ----- Plot Weather Data -----
-
-plt.figure(figsize=(14, 7))
-plt.plot(df['time'], df['temperature_2m'], label='Temperature (°C)', color='tomato')
-plt.plot(df['time'], df['relativehumidity_2m'], label='Humidity (%)', color='royalblue')
-plt.plot(df['time'], df['surface_pressure'], label='Pressure (hPa)', color='seagreen')
-plt.xlabel('Time')
-plt.ylabel('Measurements')
-plt.title('Weather Data Over the Past Week')
-plt.legend()
-plt.xticks(rotation=45)
-plt.tight_layout()
-plt.show()
+    # Preview the data
+    print(df.head())
 
 
-# ----- Get Elevation Data from Open Meteo Elevation API -----
+    # ----- Plot Weather Data -----
 
-# Build the URL and parameters for the Open Meteo Elevation API
-elevation_url = "https://api.open-meteo.com/v1/elevation"
-elevation_params = {
-    "latitude": latitude,
-    "longitude": longitude
-}
+    plt.figure(figsize=(14, 7))
 
-# Request the elevation data
-elevation_response = requests.get(elevation_url, params=elevation_params)
-elevation_data = elevation_response.json()
+    plt.plot(
+        df['time'],
+        df['temperature_2m'],
+        label='Temperature (°C)',
+        color='tomato'
+    )
 
-# Extract the elevation from the response
-elevation = elevation_data.get("elevation")[0]
-if elevation is not None:
-    print(f"The elevation at the location ({latitude}, {longitude}) is {elevation} meters.")
-else:
-    print("Elevation data not available.")
+    plt.plot(
+        df['time'],
+        df['relativehumidity_2m'],
+        label='Humidity (%)',
+        color='royalblue'
+    )
+
+    plt.plot(
+        df['time'],
+        df['surface_pressure'],
+        label='Pressure (hPa)',
+        color='seagreen'
+    )
+
+    plt.xlabel('Time')
+    plt.ylabel('Measurements')
+    plt.title('Weather Data Over the Past Week')
+    plt.legend()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.show()
 
 
-# ----- Zambretti Forecast -----
+    # ----- Get Elevation Data from Open Meteo Elevation API -----
 
-# Retrieve pressure data from the DataFrame (time and surface_pressure columns)
-pressure_data = df[['time', 'surface_pressure']]
-pressure_data.columns = ['timestamp', 'pressure']
-pressure_data = pressure_data.dropna()
+    elevation_url = "https://api.open-meteo.com/v1/elevation"
 
-# Convert the pressure data to a list of tuples
-data_points = list(pressure_data.itertuples(index=False, name=None))
+    elevation_params = {
+        "latitude": latitude,
+        "longitude": longitude
+    }
 
-# Get last temperature measurement from the DataFrame and weather code
-temperature = df['temperature_2m'].iloc[-1]
-print(f"The last temperature measurement for the location ({latitude}, {longitude}) is: {temperature}°C")
-weathercode = df['weather_code'].iloc[-1]
-print(f"The weather code for the loction ({latitude}, {longitude}) is: {weathercode}")
+    # Request the elevation data
+    elevation_response = requests.get(
+        elevation_url,
+        params=elevation_params
+    )
 
-# Create a PressureData object with the retrieved data points
-pressure_data = PressureData(
-    data_points
-)
+    elevation_data = elevation_response.json()
 
-# Create a Zambretti object and get the forecast
-zambretti = Zambretti()
-forecast = zambretti.forecast(
-    elevation=int(elevation),
-    temperature=int(temperature),
-    pressure_data=pressure_data,
-)
+    # Extract the elevation from the response
+    elevation = elevation_data.get("elevation")[0]
 
-# Return the forecast
-print(f"The Zambretti forecast for the location ({latitude}, {longitude}) is: {forecast}")
+    if elevation is not None:
+        print(
+            f"The elevation at the location "
+            f"({latitude}, {longitude}) is {elevation} meters."
+        )
+    else:
+        print("Elevation data not available.")
+
+
+    # ----- Zambretti Forecast -----
+
+    # Retrieve pressure data from the DataFrame
+    pressure_data = df[['time', 'surface_pressure']]
+
+    pressure_data.columns = ['timestamp', 'pressure']
+
+    pressure_data = pressure_data.dropna()
+
+    # Convert the pressure data to a list of tuples
+    data_points = list(
+        pressure_data.itertuples(
+            index=False,
+            name=None
+        )
+    )
+
+    # Get last temperature measurement
+    temperature = df['temperature_2m'].iloc[-1]
+
+    print(
+        f"The last temperature measurement for the location "
+        f"({latitude}, {longitude}) is: {temperature}°C"
+    )
+
+    # Get last weather code
+    weathercode = df['weather_code'].iloc[-1]
+
+    print(
+        f"The weather code for the location "
+        f"({latitude}, {longitude}) is: {weathercode}"
+    )
+
+
+    # ----- Create PressureData object -----
+
+    pressure_data = PressureData(
+        data_points
+    )
+
+
+    # ----- Create Zambretti forecast -----
+
+    zambretti = Zambretti()
+
+    forecast = zambretti.forecast(
+        elevation=int(elevation),
+        temperature=int(temperature),
+        pressure_data=pressure_data,
+    )
+
+
+    # ----- Return the forecast -----
+
+    print(
+        f"The Zambretti forecast for the location "
+        f"({latitude}, {longitude}) is: {forecast}"
+    )
+
+    return forecast, weathercode

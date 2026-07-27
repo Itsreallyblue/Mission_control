@@ -1,1 +1,18 @@
 2026-07-25 05:24:59,900 INFO mission_control.launch: Launch aborted by user
+t=1s fuel=93.16156091896674 altitude=227.36127867302048 accel=10.0
+t=2s fuel=86.16156091896674 altitude=457.3612786730205 accel=10.0
+t=3s fuel=81.16156091896674 altitude=569.3612786730205 accel=8.0
+t=4s fuel=77.16156091896674 altitude=839.3612786730205 accel=8.0
+t=5s fuel=71.16156091896674 altitude=1092.3612786730205 accel=5.0
+t=6s fuel=64.16156091896674 altitude=1384.3612786730205 accel=5.0
+t=7s fuel=60.16156091896674 altitude=1252.3612786730205 accel=-4.0
+t=8s fuel=53.16156091896674 altitude=1065.3612786730205 accel=-10.0
+t=9s fuel=49.16156091896674 altitude=975.3612786730205 accel=-5.0
+t=10s fuel=42.16156091896674 altitude=767.3612786730205 accel=-4.0
+t=11s fuel=35.16156091896674 altitude=657.3612786730205 accel=-9.0
+t=12s fuel=28.161560918966742 altitude=540.3612786730205 accel=-6.0
+2026-07-27 08:03:33,509 INFO mission_control.launch: Mission report: id=mission-20260727-080321-2587 rocket=Falcon 9 success=no
+Saved mission plots: mission_20260727_080333.png
+Saved separate mission plots: mission_20260727_080333_fuel.png, mission_20260727_080333_altitude.png, mission_20260727_080333_accel.png
+2026-07-27 08:03:35,091 INFO mission_control.launch: Mission complete: duration=12s final_fuel=28.161560918966742 final_altitude=540.3612786730205 missions=1
+Appended mission summary to missions.jsonl

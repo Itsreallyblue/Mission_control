@@ -9,10 +9,9 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).resolve().parent))
 
 from physics import update_physics
-from weather_test import forecast
 from activetelemetry import show_telemetry_persec
 from storage import save_rocket
-from weather_test import weathercode
+from weather_test import location_choice_recall
 import settings
 import logger_config
 from flight_computer import evaluate_and_report
@@ -36,19 +35,23 @@ def attempt_launch(rocket):
         logger.info("Launch aborted due to invalid confirmation")
         return False
 
+    forecast, weathercode = location_choice_recall()
+
     for i in range(constants.LAUNCH_COUNTDOWN_SECONDS, 0, -1):
         print(f"Launching in T-{i}...")
         time.sleep(1)
+
 
     print(f"\nWeather: {forecast}")
     # keep weather in debug logs only to avoid INFO-level noise
     logger.debug("Weather: %s", forecast)
 
-    if weathercode == "75" or "73" or "77" or "82" or "86" or "95" or "96" or "99" or "95 *" or "99 *":
-        print("Launch aborted due to dangerous weather.")
-        logger.warning("Launch aborted: insufficient weather")
-        return False
+    dangerous_weather = ["75", "73", "77", "82", "86", "95", "96", "99"]
 
+    if str(weathercode) in dangerous_weather: 
+        print("Launch aborted due to dangerous weather.")
+        logger.warning("Launch aborted: dangerous weather")
+        return False
     # initial burn and liftoff
     rocket.burn_fuel()
     update_physics(rocket)
