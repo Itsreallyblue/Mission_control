@@ -89,7 +89,7 @@ def _strip_wake_word(command, wake_word):
     return command
 
 
-def wait_for_wake_word(wake_word="commander"):
+def wait_for_wake_word(wake_word="orion"):
     print(f"\nSay the wake word '{wake_word}' to activate voice commands.")
     while True:
         command = listen()
@@ -102,7 +102,7 @@ def wait_for_wake_word(wake_word="commander"):
             print("Wake word not detected. Please say the wake word to continue.")
 
 
-def get_voice_command(prompt=None, wake_word="commander"):
+def get_voice_command(prompt=None, wake_word="orion"):
     if prompt:
         print(prompt)
     return wait_for_wake_word(wake_word)

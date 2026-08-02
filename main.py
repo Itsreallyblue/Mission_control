@@ -11,7 +11,7 @@ from refuelstation import refuel_station
 from iss_tracker import get_iss_location_stage_1, get_iss_location_stage_2
 import voice_control as vc
 
-VOICE_WAKE_WORD = "commander"
+VOICE_WAKE_WORD = "orion"
 
 
 def ask_text(prompt, use_voice=False):
