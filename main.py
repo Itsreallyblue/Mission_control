@@ -16,6 +16,9 @@ VOICE_WAKE_WORD = "commander"
 
 def ask_text(prompt, use_voice=False):
     if use_voice:
+        if not vc.voice_support_available():
+            print("Voice support is unavailable, falling back to keyboard input.")
+            return input(prompt)
         try:
             return vc.get_voice_command(prompt, wake_word=VOICE_WAKE_WORD)
         except Exception as error:
@@ -236,11 +239,18 @@ data = load_rocket_data()
 rocket = Rocket(**data)
 rocket.name = "Current Rocket"
 
-voice_enabled = ask_yes_no("Enable voice recognition? (y/n): ")
-if voice_enabled:
-    wake_word = input(f"Enter wake word or press Enter to use '{VOICE_WAKE_WORD}': ").strip()
-    if wake_word:
-        VOICE_WAKE_WORD = wake_word
+voice_supported = vc.voice_support_available()
+if not voice_supported:
+    print("Voice support is unavailable. Missing optional dependencies or import errors.")
+    print("Install 'sounddevice' and 'whisper' for voice commands, or continue with keyboard input.")
+
+voice_enabled = False
+if voice_supported:
+    voice_enabled = ask_yes_no("Enable voice recognition? (y/n): ")
+    if voice_enabled:
+        wake_word = input(f"Enter wake word or press Enter to use '{VOICE_WAKE_WORD}': ").strip()
+        if wake_word:
+            VOICE_WAKE_WORD = wake_word
 
 while True:
     print("\n" + "=" * 48)

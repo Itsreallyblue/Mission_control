@@ -1,9 +1,11 @@
 import re
 
+_voice_import_error = None
+
 try:
     import sounddevice as sd
     import whisper
-except ImportError as exc:
+except Exception as exc:
     sd = None
     whisper = None
     _voice_import_error = exc
@@ -14,12 +16,19 @@ else:
 _model = None
 
 
+def voice_support_available():
+    return sd is not None and whisper is not None
+
+
 def _load_model():
     if whisper is None:
-        raise ImportError(
+        message = (
             "Voice support requires the optional packages 'whisper' and 'sounddevice'. "
             "Install them with pip to enable voice commands."
-        ) from _voice_import_error
+        )
+        if _voice_import_error is not None:
+            message += f"\nUnderlying import error: {_voice_import_error}"
+        raise ImportError(message)
     global _model
     if _model is None:
         print("Loading voice model...")
